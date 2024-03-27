@@ -3,7 +3,6 @@ from pymongo import MongoClient
 
 app = Flask(__name__)
 
-# Connect to MongoDB
 client = MongoClient('database', 27017)
 db = client.my_database
 collection = db.my_collection
@@ -14,7 +13,6 @@ def submit():
     name = data.get('name')
     email = data.get('email')
 
-    # Insert data into MongoDB
     result = collection.insert_one({'name': name, 'email': email})
     if result.acknowledged:
         return jsonify({'message': 'Data inserted successfully'}), 200
